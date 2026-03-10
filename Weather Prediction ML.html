@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:8000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Weather Prediction ML</title>
+    <link href="./Weather Prediction ML_files/css2" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6bebff 0%, #9132ef 50%, #421de7 100%);
+            background-size: 300% 300%;
+            animation: gradientFlow 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        @keyframes gradientFlow {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 480px;
+            max-width: 95%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 45px 35px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: all 0.5s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.4s ease;
+        }
+
+        h2:hover {
+            transform: scale(1.05);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        input {
+            padding: 16px 18px;
+            border: none;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.3);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.5);
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+        }
+
+        input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        button {
+            padding: 18px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(255,107,107,0.5);
+        }
+
+        button:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(255,107,107,0.6);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 16px;
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .weather-display {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 5rem;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: popIn 0.8s forwards 0.3s;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        @media (max-width: 520px) {
+            .container {
+                padding: 35px 25px;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .weather-display {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Weather Prediction (ML)</h2>
+
+        <form method="POST">
+            <input type="hidden" name="csrfmiddlewaretoken" value="uFksdr6Net485BUiRMC2zSmML4rI5o4dMW0YNvgGRppxCTkkuI9g0HoMDz22hdM3">
+            <input type="number" step="any" name="temperature" placeholder="Temperature (°C)" value="" required="">
+            <input type="number" step="any" name="humidity" placeholder="Humidity (%)" value="" required="">
+            <input type="number" step="any" name="wind_speed" placeholder="Wind Speed (km/h)" value="" required="">
+            <input type="number" step="any" name="pressure" placeholder="Pressure (hPa)" value="" required="">
+            <input type="number" step="any" name="cloud_cover" placeholder="Cloud Cover (%)" value="" required="">
+            <button type="submit">Predict Weather</button>
+        </form>
+
+        
+
+        <div style="text-align: center;">
+            <a href="http://127.0.0.1:8000/dashboard/" class="nav-link">📊 View Dashboard</a>
+        </div>
+    </div>
+
+
+</body></html>
